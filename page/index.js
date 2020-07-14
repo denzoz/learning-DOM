@@ -2,7 +2,7 @@ alert("After pressing OK, rest of script will be executed");
 var target = document.firstElementChild.lastElementChild.querySelector("UL").lastElementChild;
 
 function changeText() {
-    target.innerHTML = "hi";
+    target.innerHTML = "<strong>hi</strong>";
     target.style.color = "green";
 }
 
@@ -12,11 +12,13 @@ function changeTextBack() {
 }
 
 function editLink () {
-    linkTag.innerHTML = "Google :)";
+    linkTag.innerText = "Google :)"; 
+    linkTag.style.color = "red";
 }
 
-function undoChange() {
-    linkTag.innerHTML = "Google";
+function editLinkBack() {
+    linkTag.innerText = "Google"; // ? this removes the <strong> tag
+    linkTag.style.color = "blue"; //  changing styles in JS exactly same as CSS e.g. font-size -> fontSize
 }
 
 //document.getElementById("scriptTriggerOne").addEventListener("click", changeText);
@@ -26,7 +28,17 @@ function undoChange() {
 document.querySelector("#scriptTriggerOne").onclick = changeText;
 document.querySelector("#scriptTriggerTwo").onclick = changeTextBack;
 
-// how to select anchor tag within element with id called list
-var linkTag = document.querySelector("#list a");
+// how to select anchor tag within element with class called list
+var linkTag = document.querySelector(".list a");
 
-document.getElementsByTagName("button")[2].onclick = editLink;
+document.querySelectorAll("button")[2].onclick = editLink;
+document.querySelectorAll("button")[3].onclick = editLinkBack;
+
+
+// this way is preferred (seperation of concerns)
+
+function backgroundChange() {
+    document.querySelector("body").classList.toggle("green-bg");
+}
+
+document.querySelectorAll("button")[4].onclick = backgroundChange;
