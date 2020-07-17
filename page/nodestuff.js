@@ -31,12 +31,13 @@ function addImage() {
 }
 
 function replaceWithParagraph() {
-    var para = document.createElement("p");
-    var node = document.createTextNode(text);
-    para.appendChild(node);
+
 
     var images = document.querySelectorAll("img");
     for (imageNum = 0; imageNum < images.length; imageNum++)  {
+        var para = document.createElement("p");
+        var node = document.createTextNode(text);
+        para.appendChild(node);
         var target = images[imageNum];
         target.replaceWith(para); //  doesnt replace each one individually, but removes all images and leaves a single paragraph behind
     }
